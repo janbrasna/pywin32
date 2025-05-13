@@ -1,6 +1,7 @@
 name: docs
 
 on:
+  workflow_dispatch: # Allow manual trigger
   create:
     tags:
       # https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet
@@ -51,7 +52,7 @@ jobs:
       - generate
 
     # Only publish tags
-    if: github.event_name == 'create' && github.event.ref_type == 'tag'
+    #if: github.event_name == 'create' && github.event.ref_type == 'tag'
 
     steps:
       - uses: actions/download-artifact@v4
@@ -59,7 +60,8 @@ jobs:
           name: documentation
 
       - name: Unpack archive
-        run: python -m zipfile -e site.zip .
+        #run: python -m zipfile -e site.zip .
+        run: ls -a && ls site
 
       - uses: peaceiris/actions-gh-pages@v4
         with:
