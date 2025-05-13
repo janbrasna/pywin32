@@ -1,4 +1,4 @@
-name: Deploy docs from help
+name: Build docs from help
 
 on:
   workflow_dispatch: # Allow manual trigger
@@ -35,7 +35,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
-    if: github.event_name == 'release' && github.event.action == 'published'
+    if: github.event_name == 'release' && github.event.action == 'published' || github.event_name == 'workflow_dispatch'
     needs:
       - generate
     steps:
