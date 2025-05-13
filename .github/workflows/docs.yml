@@ -59,14 +59,14 @@ jobs:
         with:
           name: documentation
 
-      - name: Unpack archive
+      #- name: Unpack archive
         #run: python -m zipfile -e site.zip .
-        run: ls -a && ls site
+        # run: ls -a && ls site
 
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: site
+          publish_dir: .
           commit_message: ${{ github.event.head_commit.message }}
         # Write .nojekyll at the root, see:
         # https://help.github.com/en/github/working-with-github-pages/about-github-pages#static-site-generators
